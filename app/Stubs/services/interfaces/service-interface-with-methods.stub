@@ -1,0 +1,12 @@
+<?php
+
+namespace App\Services\{{name}};
+
+interface {{name}}ServiceInterface
+{
+    public function list();
+    public function create($attributes);
+    public function show($id);
+    public function update($attributes, $id);
+    public function destroy($id);
+}

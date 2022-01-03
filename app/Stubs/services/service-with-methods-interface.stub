@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Services\{{name}};
+
+class {{name}}Service implements {{name}}ServiceInterface
+{
+     public function list()
+     {
+         return $this->{{name}}Repository->getAll();
+     }
+
+     public function create($attributes)
+     {
+
+         return $this->{{name}}Repository->create($attributes);
+     }
+
+     public function show($id)
+     {
+         return $this->{{name}}Repository->getById($id);
+     }
+
+     public function update($attributes, $id)
+     {
+         return $this->{{name}}Repository->update($attributes, $id);
+     }
+
+     public function destroy($id)
+     {
+
+         return $this->{{name}}Repository->destroy($id);
+     }
+}
