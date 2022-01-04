@@ -36,6 +36,7 @@ class CreateServiceInterface extends Command
 
         $this->pathParent = config('pattern_paths.paths.services');
 
+
         $this->stub = $this->getStub();
 
         $this->content = $this->getContent();
