@@ -4,7 +4,7 @@ namespace App\Services\{{name}};
 
 class {{name}}Service implements {{name}}ServiceInterface
 {
-     public function list()
+     public function getAll()
      {
          return $this->{{name}}Repository->getAll();
      }

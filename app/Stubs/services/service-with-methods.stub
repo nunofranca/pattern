@@ -6,7 +6,7 @@ namespace App\Services\{{name}};
 class {{name}}Service
 {
 
-     public function list()
+     public function getAll()
      {
 
      }

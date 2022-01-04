@@ -13,15 +13,16 @@ trait StubFiles
     protected $file;
     protected $content;
     protected $path;
+    protected $command;
     protected $methods;
     protected $interface;
     protected $repository;
 
 
+
     private function createPath()
     {
         $this->file = new Filesystem();
-
 
         if (!$this->file->isDirectory($this->pathParent)) $this->file->makeDirectory($this->pathParent);
 
@@ -36,21 +37,22 @@ trait StubFiles
         return str_replace('{{nameAttribute}}', Str::lower($this->argument('name')), $content);
     }
 
-    private function questionInterface()
+    private function questions()
     {
        $test =  in_array(true, $this->options());
        if(! $test){
-           $this->interface = $this->ask('Deseja criar o interface?', 'yes');
+           $this->interface = $this->choice('Deseja criar o interface?', ['no', 'yes']);
 
-           $this->methods = $this->ask('Deseja criar methodos básicos?', 'yes');
+           if ($this->interface === 'yes' ? $this->interface = true : $this->interface = false);
 
-           if ($this->methods === "yes") {
-               $this->repository = $this->ask('Deseja criar o repositório?', 'yes');
+           $this->methods = $this->choice('Deseja criar methodos básicos?', ['no', 'yes']);
+
+           if ($this->methods  === 'yes' ? $this->methods  = true : $this->methods  = false);
+
+           if ($this->methods) {
+               $this->repository = $this->choice('Deseja criar o repositório?', ['no', 'yes']);
+               if ($this->repository === 'yes' ? $this->repository  = true : $this->repository  = false);
            }
        }
-
-
-
-
     }
 }

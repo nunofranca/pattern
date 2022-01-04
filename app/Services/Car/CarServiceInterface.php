@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\{{name}};
+namespace App\Services\Car;
 
-interface {{name}}ServiceInterface
+interface CarServiceInterface
 {
     public function getAll();
 

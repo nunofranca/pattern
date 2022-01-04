@@ -5,7 +5,6 @@ namespace App\Commands;
 
 use App\Traits\StubFiles;
 use Illuminate\Console\Command;
-use Illuminate\Filesystem\Filesystem;
 
 
 class CreateService extends Command
@@ -19,7 +18,7 @@ class CreateService extends Command
      */
     protected $signature = 'create:service {name} {--interface} {--methods} {--repository}';
 
-    protected $description = 'Create a new contract interface';
+    protected $description = 'Create Class of Service with its variations';
 
     protected $stub;
 
@@ -34,10 +33,14 @@ class CreateService extends Command
      */
 
 
-
     public function handle()
     {
+        $this->interface = $this->option('interface');
 
+
+        $this->methods = $this->option('methods');
+
+        $this->repository = $this->option('repository');
 
         $this->pathParent = config('pattern_paths.paths.services');
 
@@ -51,7 +54,7 @@ class CreateService extends Command
 
         $this->createFile();
 
-        if ($this->interface === "yes") {
+        if ($this->interface) {
             $this->call('create:service-interface', [
                 'name' => $this->argument('name'),
                 '--methods' => true,
@@ -62,26 +65,30 @@ class CreateService extends Command
 
     public function getStub()
     {
-        $this->questionInterface();
+        $this->questions();
 
-        if ($this->interface === "yes" and $this->methods === "yes") {
-            if ($this->repository === "yes") {
+
+        if ($this->interface and $this->methods) {
+
+            if ($this->repository) {
                 return file_get_contents(__DIR__ . "/../Stubs/services/service-with-methods-interface-repository.stub");
             }
             return file_get_contents(__DIR__ . "/../Stubs/services/service-with-methods-interface.stub");
         }
 
-        if ($this->interface === "yes" and !$this->methods != "yes") {
+        if ($this->interface and !$this->methods) {
             return file_get_contents(__DIR__ . "/../Stubs/services/service-with-interface.stub");
         }
 
-        if (!$this->interface != "yes" and $this->methods === "yes") {
-            if ($this->repository === "yes") {
+        if (!$this->interface and $this->methods) {
+
+            if ($this->repository) {
                 return file_get_contents(__DIR__ . "/../Stubs/services/service-with-methods-repository.stub");
             }
             return file_get_contents(__DIR__ . "/../Stubs/services/service-with-methods.stub");
         }
 
+        return file_get_contents(__DIR__ . "/../Stubs/services/service.stub");
     }
 
     private function createFile()
@@ -95,8 +102,6 @@ class CreateService extends Command
             $this->question($this->nameFile . " Criado com sucesso");
             return $this;
         }
-
-        $this->error($this->nameFile . " Já existe");
 
     }
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\{{name}};
+namespace App\Services\Post;
 
-interface {{name}}ServiceInterface
+interface PostServiceInterface
 {
     public function getAll();
 

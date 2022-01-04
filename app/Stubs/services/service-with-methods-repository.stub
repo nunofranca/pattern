@@ -14,7 +14,7 @@ class {{name}}Service
           $this->{{name}}Repository = ${{name}}Repository;
       }
 
-      public function list()
+      public function getAll()
       {
           return $this->{{name}}Repository->getAll();
       }

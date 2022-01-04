@@ -1,0 +1,12 @@
+<?php
+
+namespace App\Repositories\{{name}};
+
+
+class {{name}}RepositoryEloquent extends BaseRepository
+{
+    public function __construct({{name}} ${{nameAttribute}})
+    {
+        parent::__construct(${{nameAttribute}});
+    }
+}

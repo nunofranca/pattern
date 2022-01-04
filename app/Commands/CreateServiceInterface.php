@@ -2,10 +2,9 @@
 
 namespace App\Commands;
 
-use App\Traits\CreateFile;
+
 use App\Traits\StubFiles;
 use Illuminate\Console\Command;
-use Illuminate\Filesystem\Filesystem;
 
 
 class CreateServiceInterface extends Command
@@ -17,11 +16,9 @@ class CreateServiceInterface extends Command
      *
      * @var string
      */
-    protected $signature = 'create:service-interface {name} {--interface} {--methods} {--repository}';
+    protected $signature = 'create:service-interface {name} {--methods}';
 
     protected $stub;
-
-    protected $file;
 
     protected $nameFile;
 
@@ -30,11 +27,12 @@ class CreateServiceInterface extends Command
      *
      * @var string
      */
-    protected $description = 'Create a new contract interface';
+    protected $description = 'Create the Class of Service Interface';
 
 
     public function handle()
     {
+        $this->methods = $this->option('methods');
 
         $this->pathParent = config('pattern_paths.paths.services');
 
@@ -50,15 +48,15 @@ class CreateServiceInterface extends Command
 
     }
 
+
     public function getStub()
     {
 
-        if ($this->methods == "yes") {
+        if ($this->methods) {
             return file_get_contents(__DIR__ . "/../Stubs/services/interfaces/service-interface-with-methods.stub");
         }
 
         return file_get_contents(__DIR__ . "/../Stubs/services/interfaces/service-interface.stub");
-
 
     }
 
@@ -75,8 +73,6 @@ class CreateServiceInterface extends Command
             $this->question(str_replace('.php', '', $this->nameFile) . " Criado com sucesso");
             return $this;
         }
-        $this->error(str_replace('.php', '', $this->nameFile) . " Já existe");
-
     }
 
     private function formNameFile(): string
