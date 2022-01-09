@@ -34,7 +34,7 @@ class CreateRepositoryInterface extends Command
         $this->methods = $this->option('methods');
 
 
-        $this->pathParent = config('pattern_paths.paths.repositories');
+        $this->pathParent = config('pattern.paths.repositories');
 
         $this->stub = $this->getStub();
 

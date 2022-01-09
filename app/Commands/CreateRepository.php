@@ -34,7 +34,7 @@ class CreateRepository extends Command
     public function handle()
     {
 
-        $this->pathParent = config('pattern_paths.paths.repositories');
+        $this->pathParent = config('pattern.paths.repositories');
 
         $this->interface = $this->option('interface');
 

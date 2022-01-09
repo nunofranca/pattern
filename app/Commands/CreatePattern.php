@@ -14,7 +14,7 @@ class CreatePattern extends Command
      *
      * @var string
      */
-    protected $signature = 'pattern {name}';
+    protected $signature = 'create:pattern {name}';
 
     /**
      * The description of the command.
@@ -30,6 +30,7 @@ class CreatePattern extends Command
      */
     public function handle()
     {
+
 
         $this->call('create:service', [
             'name' => $this->argument('name'),
@@ -52,10 +53,7 @@ class CreatePattern extends Command
             'name' => $this->argument('name'),
             '--methods' => true,
         ]);
-
-        $this->call('create:base', [
-            'name' => 'Base',
-        ]);
+        $this->call('create:base');
     }
 
 }

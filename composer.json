@@ -29,6 +29,13 @@
             "App\\": "app/"
         }
     },
+    "extra": {
+    "laravel": {
+        "providers": [
+            "nunofranca\\serpro\\Providers\\ServicesServiceProvider"
+        ]
+    }
+},
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"

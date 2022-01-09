@@ -18,26 +18,36 @@ trait StubFiles
     protected $interface;
     protected $repository;
 
-
-
     private function createPath()
     {
         $this->file = new Filesystem();
 
-        if (!$this->file->isDirectory($this->pathParent)) $this->file->makeDirectory($this->pathParent);
+        $this->file->isDirectory($this->pathParent) ?: $this->file->makeDirectory($this->pathParent);
 
-        if (!$this->file->isDirectory($this->pathParent . '/' . $this->argument('name'))) $this->file->makeDirectory($this->pathParent . '/' . $this->argument('name'));
 
-        return $this->pathParent . '/' . $this->argument('name');
+        if ($this->argument('command') =='create:base'){
+            return;
+        }
+
+      $this->file->isDirectory($this->pathParent . '/' . $this->argument('name')) ?: $this->file->makeDirectory($this->pathParent . '/' . $this->argument('name'));
+
     }
 
     public function getContent()
     {
-        $content = str_replace('{{name}}', $this->argument('name'), $this->stub);
-        return str_replace('{{nameAttribute}}', Str::lower($this->argument('name')), $content);
+        $arguments = $this->arguments();
+
+        if($arguments['command'] === 'create:base'){
+            $arguments['name'] = null;
+        }
+
+        $content = str_replace('{{name}}', $arguments['name'] ?? config('pattern.base.name'), $this->stub);
+        $content = str_replace('{{nameAbstract}}', config('pattern.base.name'), $content);
+
+        return str_replace('{{nameAttribute}}', Str::lower($arguments['name'] ?? config('pattern.base.name')), $content);
     }
 
-    private function questions()
+    private function askApp()
     {
        $test =  in_array(true, $this->options());
        if(! $test){

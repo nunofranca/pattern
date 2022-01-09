@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class PatternServiceProvider extends ServiceProvider
+class ServicesServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -23,7 +23,7 @@ class PatternServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        
+
     }
 
 

@@ -15,7 +15,7 @@ class CreateBase extends Command
      *
      * @var string
      */
-    protected $signature = 'create:base {name}';
+    protected $signature = 'create:base';
 
     protected $description = 'Create the abstract class with eloquent default methods';
 
@@ -34,14 +34,15 @@ class CreateBase extends Command
 
     public function handle()
     {
-
-        $this->pathParent = config('pattern_paths.paths.repositories');
+        $this->pathParent = config('pattern.paths.repositories');
 
         $this->stub = $this->getStub();
 
         $this->content = $this->getContent();
 
         $this->nameFile = $this->formNameFile();
+
+        $this->createPath();
 
         $this->createFile();
 
@@ -55,20 +56,21 @@ class CreateBase extends Command
     private function createFile()
     {
 
-        $file =  $this->pathParent . "/" . $this->nameFile;
+        $file = $this->pathParent . $this->formNameFile();
 
         if (!is_file($file)) {
             file_put_contents($file, $this->content);
-            $this->question(str_replace('.php','',$this->nameFile) . " Criado com sucesso");
+            $this->question(str_replace('.php', '', $this->nameFile) . " Criado com sucesso");
             return $this;
         }
-
     }
 
 
     private function formNameFile(): string
     {
-        return $this->argument('name') . 'Repository.php';
+
+        return config('pattern.base.name').'Repository.php';
+
     }
 
 }

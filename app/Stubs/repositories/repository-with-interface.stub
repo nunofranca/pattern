@@ -3,9 +3,9 @@
 namespace App\Repositories\{{name}};
 
 use App\Models\{{name}};
-use App\Repositories\BaseRepository;
+use App\Repositories\{{nameAbstract}}Repository;
 
-class {{name}}RepositoryEloquent extends BaseRepository implements {{name}}RepositoryInterface
+class {{name}}RepositoryEloquent extends {{nameAbstract}}Repository implements {{name}}RepositoryInterface
 {
     public function __construct({{name}} ${{nameAttribute}})
     {

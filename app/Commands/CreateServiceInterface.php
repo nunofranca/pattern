@@ -34,8 +34,7 @@ class CreateServiceInterface extends Command
     {
         $this->methods = $this->option('methods');
 
-        $this->pathParent = config('pattern_paths.paths.services');
-
+        $this->pathParent = config('pattern.paths.services');
 
         $this->stub = $this->getStub();
 
@@ -48,8 +47,6 @@ class CreateServiceInterface extends Command
         $this->createFile();
 
     }
-
-
     public function getStub()
     {
 
@@ -66,8 +63,8 @@ class CreateServiceInterface extends Command
 
         $path = $this->pathParent . $this->argument('name');
 
-        $file = $path . "/" . $this->nameFile;
 
+        $file = $path . "/" . $this->nameFile;
 
         if (!is_file($file)) {
             file_put_contents($file, $this->content);

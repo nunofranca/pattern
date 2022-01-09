@@ -37,12 +37,11 @@ class CreateService extends Command
     {
         $this->interface = $this->option('interface');
 
-
         $this->methods = $this->option('methods');
 
         $this->repository = $this->option('repository');
 
-        $this->pathParent = config('pattern_paths.paths.services');
+        $this->pathParent = config('pattern.paths.services');
 
         $this->stub = $this->getStub();
 
@@ -65,8 +64,7 @@ class CreateService extends Command
 
     public function getStub()
     {
-        $this->questions();
-
+        $this->askApp();
 
         if ($this->interface and $this->methods) {
 

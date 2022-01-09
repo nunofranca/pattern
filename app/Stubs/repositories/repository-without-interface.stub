@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Repositories\{{name}};
+use App\Repositories\{{nameAbstract}}Repository;
 
-
-class {{name}}RepositoryEloquent extends BaseRepository
+class {{name}}RepositoryEloquent extends {{nameAbstract}}Repository
 {
     public function __construct({{name}} ${{nameAttribute}})
     {

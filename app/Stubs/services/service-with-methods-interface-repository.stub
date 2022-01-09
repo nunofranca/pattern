@@ -6,37 +6,37 @@ use App\Repositories\{{name}}\{{name}}RepositoryInterface;
 
 class {{name}}Service implements {{name}}ServiceInterface
 {
-        protected ${{name}}Repository;
+        protected ${{nameAttribute}}Repository;
 
-         public function __construct({{name}}RepositoryInterface ${{name}}Repository)
+         public function __construct({{name}}RepositoryInterface ${{nameAttribute}}Repository)
          {
-             $this->{{name}}Repository = ${{name}}Repository;
+             $this->{{nameAttribute}}Repository = ${{nameAttribute}}Repository;
          }
 
          public function getAll()
          {
-             return $this->{{name}}Repository->getAll();
+             return $this->{{nameAttribute}}Repository->getAll();
          }
 
          public function create($attributes)
          {
 
-             return $this->{{name}}Repository->create($attributes);
+             return $this->{{nameAttribute}}Repository->create($attributes);
          }
 
          public function show($id)
          {
-             return $this->{{name}}Repository->getById($id);
+             return $this->{{nameAttribute}}Repository->getById($id);
          }
 
          public function update($attributes, $id)
          {
-             return $this->{{name}}Repository->update($attributes, $id);
+             return $this->{{nameAttribute}}Repository->update($attributes, $id);
          }
 
          public function destroy($id)
          {
 
-             return $this->{{name}}Repository->destroy($id);
+             return $this->{{nameAttribute}}Repository->destroy($id);
          }
 }
